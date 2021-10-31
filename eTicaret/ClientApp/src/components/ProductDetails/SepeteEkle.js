@@ -1,0 +1,50 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = require("react");
+var Icon = require("react-bootstrap-icons");
+var SepeteEkle = function () {
+    return (React.createElement("div", null,
+        React.createElement("button", { className: "btn btn-warning", id: "sepeteEkleButon", "data-bs-target": "#sepeteEkleModal", "data-bs-toggle": "modal" },
+            React.createElement("div", null,
+                React.createElement(Icon.CartFill, { id: "sepeteEkleIcon2" })),
+            React.createElement("div", null,
+                React.createElement("span", { id: "sepeteEkleYazi" }, "Sepete Ekle"))),
+        React.createElement("div", { className: "modal fade", id: "sepeteEkleModal" },
+            React.createElement("div", { className: "modal-dialog modal-dialog-centered" },
+                React.createElement("div", { className: "modal-content" },
+                    React.createElement("div", { className: "modal-header" },
+                        React.createElement("div", { id: "stokAlan" },
+                            React.createElement("div", { id: "stokIconAlan" },
+                                React.createElement(Icon.CheckLg, { id: "stokIcon" })),
+                            React.createElement("div", { id: "stokYaziAlan" },
+                                React.createElement("span", { id: "stokYazi" }, "1 \u00DCr\u00FCn Sepete Eklendi"))),
+                        React.createElement("button", { className: "btn-close", "data-bs-dismiss": "modal" })),
+                    React.createElement("div", { className: "modal-body" },
+                        React.createElement("div", { className: "row" },
+                            React.createElement("div", { className: "col-md-12", style: { display: "flex" } },
+                                React.createElement("div", { id: "sepeteEkleFotoAlan" },
+                                    React.createElement("img", { id: "sepeteEkleFoto", src: require('./SepeteEkleImg/34867488.png'), alt: "xiomiNote8" })),
+                                React.createElement("div", { id: "sepeteEkleBaslikTopveFiyatlarAlan" },
+                                    React.createElement("div", { id: "sepeteEkleBaslikAlan" },
+                                        React.createElement("span", { id: "sepeteEkleBaslik", className: "h6" }, "Xiaomi Redmi Note 8 4GB/64GB Mavi Ak\u0131ll\u0131 Telefon")),
+                                    React.createElement("div", { id: "sepeteEkleTopveFiyatlar" },
+                                        React.createElement("div", { id: "sepeteEkleTop" },
+                                            React.createElement("span", { id: "sepeteEkleTopYazi" }, "%9 \u0130ndirim")),
+                                        React.createElement("div", { id: "sepeteEkleFiyatlar" },
+                                            React.createElement("span", { style: { display: "none" } }, "2.999 TL"),
+                                            React.createElement("span", { id: "sepeteEkleIndirim" }, "3.099 TL"),
+                                            React.createElement("span", { id: "sepeteEkleIndirimliFiyat" }, "2.999 TL"))))))),
+                    React.createElement("div", { className: "modal-footer" },
+                        React.createElement("button", { className: "btn btn-warning", id: "sepeteEkleModalButon", "data-bs-dismiss": "modal" },
+                            React.createElement("div", null,
+                                React.createElement(Icon.CartFill, { id: "sepeteEkleModalIcon" })),
+                            React.createElement("div", null,
+                                React.createElement("span", { id: "sepeteEkleModalYazi" }, "Al\u0131\u015Fveri\u015Fi Devam Et"))),
+                        React.createElement("button", { className: "btn btn-warning", id: "sepeteEkleModalButon", type: "button" },
+                            React.createElement("div", null,
+                                React.createElement(Icon.CheckLg, { id: "sepeteEkleModalIcon" })),
+                            React.createElement("div", null,
+                                React.createElement("span", { id: "sepeteEkleModalYazi" }, "Al\u0131\u015Fveri\u015Fi Tamamla")))))))));
+};
+exports.default = SepeteEkle;
+//# sourceMappingURL=SepeteEkle.js.map
