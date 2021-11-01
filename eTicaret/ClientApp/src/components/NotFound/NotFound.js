@@ -76,7 +76,7 @@ var NotFound = function () {
                 React.createElement("path", { fill: "#f7727a", d: "M34.719,131.334c0.048,13.082,1.824,26.164,5.184,39.246H80h40.098c3.361-13.08,5.138-26.162,5.186-39.244L34.719,131.334z" }))),
         React.createElement("div", { className: "col" },
             React.createElement("h1", null, "404"),
-            React.createElement("p", null, "SOVOG has a configuration problem..."))));
+            React.createElement("p", null, "Arad\u0131\u011F\u0131n\u0131z sayfa bulunamad\u0131..."))));
 };
 exports.default = NotFound;
 //# sourceMappingURL=NotFound.js.map

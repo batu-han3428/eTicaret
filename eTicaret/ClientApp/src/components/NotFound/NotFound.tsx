@@ -195,7 +195,7 @@ const NotFound = () => {
             </svg>
             <div className="col">
                 <h1>404</h1>
-                <p>SOVOG has a configuration problem...</p>
+                <p>Aradığınız sayfa bulunamadı...</p>
             </div>
         </>
         )
