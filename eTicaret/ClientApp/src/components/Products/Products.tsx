@@ -8,9 +8,25 @@ import Urunler from './Urunler';
 import Pagination from './Pagination';
 import './Products.css';
 import { connect } from 'react-redux'
+import { listProducts } from '../../action/urunler'
+import configureStore from '../../store/configureStore';
+import axios from 'axios'
 
-const Products = () => {
- 
+const Products = (props:any) => {
+    console.log(props.location.pathname);
+
+    React.useEffect(() => {
+        const store = configureStore();
+
+        axios.post("https://localhost:5001/api/urunler/Index",props.location.pathname).then(res => {
+            store.dispatch({
+                type: "GET_USER",
+                payload: res.data
+            })
+        });
+
+    }, [])
+    
     return (
         <div className="container-fluid" style={{ backgroundColor: "rgb(243, 243, 243)", paddingBottom: "25px" }}>
             <SiteHaritasi />
@@ -30,5 +46,10 @@ const Products = () => {
         )
 }
 
+const mapStateToProps = (state: any) => {
+    return {
+        urunler: state.urunler
+    }
+}
 
-export default Products
+export default connect(mapStateToProps)(Products)

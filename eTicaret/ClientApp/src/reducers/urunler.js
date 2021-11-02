@@ -23,6 +23,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var urunState = [];
 var urunReducer = function (state, action) {
     if (state === void 0) { state = urunState; }
+    console.log(action);
     switch (action.type) {
         case "ADD_BLOG":
             return __spreadArray(__spreadArray([], state, true), [
@@ -42,6 +43,10 @@ var urunReducer = function (state, action) {
                     return blog;
                 }
             });
+        case "LİST_PRODUCTS":
+            return [
+                action.location
+            ];
         default:
             return state;
     }

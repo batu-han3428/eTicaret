@@ -18,7 +18,7 @@ namespace eTicaret.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(object location)
         {
             var result = _urunler.hepsiniListele(null);
 

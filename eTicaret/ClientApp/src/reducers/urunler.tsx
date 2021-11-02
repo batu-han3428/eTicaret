@@ -1,7 +1,8 @@
 ﻿const urunState: any[] = [];
 
 
-const urunReducer = (state = urunState, action:any) => {
+const urunReducer = (state = urunState, action: any) => {
+    console.log(action);
     switch (action.type) {
         case "ADD_BLOG":
             return [
@@ -23,7 +24,10 @@ const urunReducer = (state = urunState, action:any) => {
                     return blog;
                 }
             })
-
+        case "LİST_PRODUCTS":
+            return [
+                action.location
+            ]
         default:
             return state;
     }
