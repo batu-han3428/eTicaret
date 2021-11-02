@@ -63,11 +63,18 @@
     <None Remove="ClientApp\src\components\Products\Products.tsx" />
     <None Remove="ClientApp\src\components\Products\SiteHaritasi.tsx" />
     <None Remove="ClientApp\src\components\Products\Urunler.tsx" />
+    <None Remove="ClientApp\src\reducers\kategoriler.tsx" />
+    <None Remove="ClientApp\src\reducers\urunler.tsx" />
+    <None Remove="ClientApp\src\store\index.tsx" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ClientApp\src\components\Home\SliderImg\" />
     <Folder Include="ClientApp\src\components\Products\UrunlerImg\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

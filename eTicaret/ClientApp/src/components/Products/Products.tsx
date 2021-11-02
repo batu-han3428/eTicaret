@@ -7,8 +7,10 @@ import Marka from './Marka';
 import Urunler from './Urunler';
 import Pagination from './Pagination';
 import './Products.css';
+import { connect } from 'react-redux'
 
 const Products = () => {
+ 
     return (
         <div className="container-fluid" style={{ backgroundColor: "rgb(243, 243, 243)", paddingBottom: "25px" }}>
             <SiteHaritasi />
@@ -27,5 +29,6 @@ const Products = () => {
         </div>
         )
 }
+
 
 export default Products
