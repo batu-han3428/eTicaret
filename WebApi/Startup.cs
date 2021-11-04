@@ -1,3 +1,7 @@
+using BL.Concrete;
+using BL.Models;
+using DAL.Concrete;
+using DAL.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,6 +44,10 @@ namespace WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
+
+            services.AddScoped<IUrunlerServices, UrunlerServices>();
+            services.AddScoped<IUrunlerRepository, UrunlerRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

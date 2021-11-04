@@ -1,5 +1,6 @@
 ﻿using DAL.Models;
 using Domain.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace DAL.Concrete
 {
     public class KategorilerRepository : BaseRepository<Kategoriler>, IKategorilerRepository
     {
-
+        
     }
 }

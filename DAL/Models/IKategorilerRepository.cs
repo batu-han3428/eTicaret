@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    public interface IUrunlerRepository : IBaseRepository<Urunler>
+    public interface IKategorilerRepository : IBaseRepository<Kategoriler>
     {
+       
     }
 }

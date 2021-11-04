@@ -15,7 +15,6 @@ namespace DAL.Models
         int guncelle(T model); 
         T listele(int id);
         List<T> hepsiniListele(Expression<Func<T, bool>> filter = null);
-        IQueryable<T> hepsiniListeleInclude(Expression<Func<T, bool>> filter = null,
-                                   params Expression<Func<T, object>>[] include);
+        
     }
 }

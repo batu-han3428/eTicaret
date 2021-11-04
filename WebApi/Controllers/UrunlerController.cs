@@ -1,4 +1,4 @@
-﻿using BL.Concrete;
+﻿using BL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,21 +7,30 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController] 
-    public class UrunlerController : Controller
+    public class UrunlerController : ControllerBase
     {
-        private readonly UrunlerServices _UrunlerServices;
+        private readonly IUrunlerServices UrunlerServices;
 
-        public UrunlerController(UrunlerServices UrunlerServices)
+        public UrunlerController(IUrunlerServices UrunlerServices)
         {
-            _UrunlerServices = UrunlerServices;
+            this.UrunlerServices = UrunlerServices;
         }
 
-        public IActionResult Index(object location)
+        [HttpGet("UrunGetir/{location}")]
+        public IActionResult UrunGetir(string location)
         {
+            var urunler = UrunlerServices.urunleriGetir(location);
 
-            return View();
+            if (urunler.Count > 0)
+            {
+                return Ok(urunler);
+            }
+            else
+            {
+                return BadRequest();
+            }  
         }
     }
 }

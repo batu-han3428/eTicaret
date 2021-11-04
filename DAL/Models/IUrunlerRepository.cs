@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    public interface IKategorilerRepository : IBaseRepository<Kategoriler>
+    public interface IUrunlerRepository : IBaseRepository<Urunler>
     {
+        List<Urunler> urunleriGetir(string location);
     }
 }

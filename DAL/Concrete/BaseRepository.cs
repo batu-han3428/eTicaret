@@ -83,11 +83,5 @@ namespace DAL.Concrete
             }
         }
 
-        public IQueryable<T> hepsiniListeleInclude(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] include)
-        {
-
-            var query = context.Set<T>().Where(filter);
-            return include.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-        }
     }
 }

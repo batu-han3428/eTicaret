@@ -11,5 +11,7 @@ namespace BL.Models
     public interface IUrunlerServices
     {
         List<Urunler> hepsiniListele(Expression<Func<Urunler, bool>> filter = null);
+
+        List<Urunler> urunleriGetir(string location);
     }
 }

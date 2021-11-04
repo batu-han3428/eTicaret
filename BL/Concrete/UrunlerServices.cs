@@ -14,14 +14,19 @@ namespace BL.Concrete
     {
         private IUrunlerRepository _UrunlerRepository;
 
-        public UrunlerServices(IUrunlerRepository UrunlerRepository)
+        public UrunlerServices(IUrunlerRepository _UrunlerRepository)
         {
-            _UrunlerRepository = UrunlerRepository;
+            this._UrunlerRepository = _UrunlerRepository;
         }
 
         public List<Urunler> hepsiniListele(Expression<Func<Urunler, bool>> filter = null)
         {
             return _UrunlerRepository.hepsiniListele(filter);
+        }
+
+        public List<Urunler> urunleriGetir(string location)
+        {
+            return _UrunlerRepository.urunleriGetir(location);
         }
 
     }
