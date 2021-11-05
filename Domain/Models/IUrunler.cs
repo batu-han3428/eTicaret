@@ -23,7 +23,7 @@ namespace Domain.Models
         Kategoriler Kategori { get; set; }
         string TeknikOzellikBaslik { get; set; }
         string TeknikOzellikIcerik { get; set; }
-
         string Fotograf { get; set; }
+        string MarkaFotograf { get; set; }
     }
 }
