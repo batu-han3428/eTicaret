@@ -14,5 +14,7 @@ namespace BL.Models
         List<Urunler> urunleriGetir(string location);
 
         IEnumerable<Urunler> urunleriGetirSayfali(string location, Pagination ownerParameters);
+
+        int toplamUrunSayisi(string location);
     }
 }

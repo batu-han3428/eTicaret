@@ -29,5 +29,10 @@ namespace BL.Concrete
             return _UrunlerRepository.urunleriGetirSayfali(location, ownerParameters);
         }
 
+        public int toplamUrunSayisi(string location)
+        {
+            return _UrunlerRepository.toplamUrunSayisi(location);
+        }
+
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -23,11 +24,12 @@ namespace WebApi.Controllers
         [HttpGet("UrunGetir/{location}")]
         public IActionResult UrunGetir(string location, [FromQuery] Pagination pagination)
         {
+            UrunlerViewModel urunler = new UrunlerViewModel();
 
-            var urunler = UrunlerServices.urunleriGetirSayfali(location, pagination);
-          
+            urunler.Urunler = UrunlerServices.urunleriGetirSayfali(location, pagination);
+            urunler.toplamUrunSayisi = UrunlerServices.toplamUrunSayisi(location);
 
-            if (urunler.Count() > 0)
+            if (urunler.toplamUrunSayisi > 0)
             {
                 return Ok(urunler);
             }

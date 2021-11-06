@@ -17,12 +17,17 @@ namespace DAL.Concrete
         }
 
          public IEnumerable<Urunler> urunleriGetirSayfali(string location, Pagination pagination)
-        {
+         {
             return urunleriGetir(location)
                 .OrderBy(on => on.Id)
                 .Skip((pagination.PageNumber - 1) * 20)
                 .Take(20)
                 .ToList();
-        }
+         }
+
+         public int toplamUrunSayisi(string location)
+         {
+            return urunleriGetir(location).Count;
+         }
     }
 }
