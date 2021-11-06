@@ -12,9 +12,17 @@ namespace DAL.Concrete
     public class UrunlerRepository : BaseRepository<Urunler>, IUrunlerRepository
     {
         public List<Urunler> urunleriGetir(string location)
-        {
-
+        {           
             return context.Urunler.Where(x => x.Kategori.Ad == location).ToList();
+        }
+
+         public IEnumerable<Urunler> urunleriGetirSayfali(string location, Pagination pagination)
+        {
+            return urunleriGetir(location)
+                .OrderBy(on => on.Id)
+                .Skip((pagination.PageNumber - 1) * 20)
+                .Take(20)
+                .ToList();
         }
     }
 }

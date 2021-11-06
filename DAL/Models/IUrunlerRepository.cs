@@ -10,5 +10,7 @@ namespace DAL.Models
     public interface IUrunlerRepository : IBaseRepository<Urunler>
     {
         List<Urunler> urunleriGetir(string location);
+        IEnumerable<Urunler> urunleriGetirSayfali(string location, Pagination pagination);
+        
     }
 }

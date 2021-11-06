@@ -1,4 +1,5 @@
 ﻿using BL.Models;
+using Domain.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,15 @@ namespace WebApi.Controllers
             this.UrunlerServices = UrunlerServices;
         }
 
+  
         [HttpGet("UrunGetir/{location}")]
-        public IActionResult UrunGetir(string location)
+        public IActionResult UrunGetir(string location, [FromQuery] Pagination pagination)
         {
-            var urunler = UrunlerServices.urunleriGetir(location);
 
-            if (urunler.Count > 0)
+            var urunler = UrunlerServices.urunleriGetirSayfali(location, pagination);
+          
+
+            if (urunler.Count() > 0)
             {
                 return Ok(urunler);
             }

@@ -10,8 +10,9 @@ namespace BL.Models
 {
     public interface IUrunlerServices
     {
-        List<Urunler> hepsiniListele(Expression<Func<Urunler, bool>> filter = null);
 
         List<Urunler> urunleriGetir(string location);
+
+        IEnumerable<Urunler> urunleriGetirSayfali(string location, Pagination ownerParameters);
     }
 }

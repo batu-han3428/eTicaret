@@ -19,14 +19,14 @@ namespace BL.Concrete
             this._UrunlerRepository = _UrunlerRepository;
         }
 
-        public List<Urunler> hepsiniListele(Expression<Func<Urunler, bool>> filter = null)
-        {
-            return _UrunlerRepository.hepsiniListele(filter);
-        }
-
         public List<Urunler> urunleriGetir(string location)
         {
             return _UrunlerRepository.urunleriGetir(location);
+        }
+
+        public IEnumerable<Urunler> urunleriGetirSayfali(string location, Pagination ownerParameters)
+        {
+            return _UrunlerRepository.urunleriGetirSayfali(location, ownerParameters);
         }
 
     }
