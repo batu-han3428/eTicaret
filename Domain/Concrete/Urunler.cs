@@ -29,5 +29,7 @@ namespace Domain.Concrete
         public DateTime DeletedTime { get; set; }
         public string Fotograf { get; set; }
         public string MarkaFotograf { get; set; }
+
+        public string detayFotogaflar { get; set; }
     }
 }

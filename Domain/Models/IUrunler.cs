@@ -25,5 +25,6 @@ namespace Domain.Models
         string TeknikOzellikIcerik { get; set; }
         string Fotograf { get; set; }
         string MarkaFotograf { get; set; }
+        string detayFotogaflar { get; set; }
     }
 }

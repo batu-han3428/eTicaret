@@ -38,5 +38,20 @@ namespace WebApi.Controllers
                 return BadRequest();
             }  
         }
+    
+        [HttpGet("UrunDetayGetir/{id}")]
+        public IActionResult UrunDetayGetir(int id)
+        {
+            var urun = UrunlerServices.urunGetir(id);
+
+            if (urun != null)
+            {
+                return Ok(urun);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }

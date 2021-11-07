@@ -34,5 +34,11 @@ namespace BL.Concrete
             return _UrunlerRepository.toplamUrunSayisi(location);
         }
 
+        public Urunler urunGetir(int id)
+        {
+            return _UrunlerRepository.listele(id);
+        }
+
+
     }
 }
