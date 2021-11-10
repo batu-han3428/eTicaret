@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20211107125847_detayFotograflar")]
+    [Migration("20211110163913_detayFotograflar")]
     partial class detayFotograflar
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,9 +133,6 @@ namespace Domain.Migrations
                     b.Property<DateTime>("createTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("detayFotogaflar")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
 
@@ -149,6 +146,26 @@ namespace Domain.Migrations
                     b.ToTable("Urunler");
                 });
 
+            modelBuilder.Entity("Domain.Concrete.detayFotograflar", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("detayFotograf")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("urunlerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("urunlerId");
+
+                    b.ToTable("detayFotograflar");
+                });
+
             modelBuilder.Entity("Domain.Concrete.Urunler", b =>
                 {
                     b.HasOne("Domain.Concrete.Kategoriler", "Kategori")
@@ -158,9 +175,23 @@ namespace Domain.Migrations
                     b.Navigation("Kategori");
                 });
 
+            modelBuilder.Entity("Domain.Concrete.detayFotograflar", b =>
+                {
+                    b.HasOne("Domain.Concrete.Urunler", "urunler")
+                        .WithMany("detayFotograflar")
+                        .HasForeignKey("urunlerId");
+
+                    b.Navigation("urunler");
+                });
+
             modelBuilder.Entity("Domain.Concrete.Kategoriler", b =>
                 {
                     b.Navigation("urunAdi");
+                });
+
+            modelBuilder.Entity("Domain.Concrete.Urunler", b =>
+                {
+                    b.Navigation("detayFotograflar");
                 });
 #pragma warning restore 612, 618
         }

@@ -30,6 +30,7 @@ namespace Domain.Concrete
         public string Fotograf { get; set; }
         public string MarkaFotograf { get; set; }
 
-        public string detayFotogaflar { get; set; }
+        //public string detayFotogaflar { get; set; }
+        public List<detayFotograflar> detayFotograflar { get; set; }
     }
 }

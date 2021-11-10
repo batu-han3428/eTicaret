@@ -37,6 +37,10 @@ namespace Domain.Contexts
             modelBuilder.Entity<Urunler>()
                 .HasOne<Kategoriler>(s => s.Kategori)
                 .WithMany(g => g.urunAdi);
+
+            modelBuilder.Entity<detayFotograflar>()
+                .HasOne<Urunler>(s => s.urunler)
+                .WithMany(g => g.detayFotograflar);
             #endregion
 
 

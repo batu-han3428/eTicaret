@@ -36,7 +36,7 @@ namespace BL.Concrete
 
         public Urunler urunGetir(int id)
         {
-            return _UrunlerRepository.listele(id);
+            return _UrunlerRepository.urunDetayGetir(id);
         }
 
 

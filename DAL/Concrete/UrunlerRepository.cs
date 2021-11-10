@@ -29,5 +29,13 @@ namespace DAL.Concrete
          {
             return urunleriGetir(location).Count;
          }
+
+        public Urunler urunDetayGetir(int id)
+        {
+            var urun = context.Urunler.Include(x => x.detayFotograflar).FirstOrDefault(x => x.Id == id);
+
+            return urun;
+               
+        }
     }
 }

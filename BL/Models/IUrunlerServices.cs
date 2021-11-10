@@ -19,5 +19,7 @@ namespace BL.Models
 
         Urunler urunGetir(int id);
 
+       
+
     }
 }

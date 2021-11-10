@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace WebApi
@@ -31,7 +32,8 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);//include ile veri getirdiðimizde hata vermemesi için bu kodu yazdým
 
             services.AddCors(options =>
                            options.AddDefaultPolicy(builder =>
@@ -47,7 +49,7 @@ namespace WebApi
 
             services.AddScoped<IUrunlerServices, UrunlerServices>();
             services.AddScoped<IUrunlerRepository, UrunlerRepository>();
-
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
