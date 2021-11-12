@@ -21,8 +21,7 @@ namespace Domain.Models
         string Marka { get; set; }
         string DigerKategorileri { get; set; }
         Kategoriler Kategori { get; set; }
-        string TeknikOzellikBaslik { get; set; }
-        string TeknikOzellikIcerik { get; set; }
+        List<urunlerTeknikOzellikler> urunlerTeknikOzellikler { get; set; }
         string Fotograf { get; set; }
         string MarkaFotograf { get; set; }
         //string detayFotogaflar { get; set; }

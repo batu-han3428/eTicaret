@@ -21,8 +21,7 @@ namespace Domain.Concrete
         public string Marka { get; set; }
         public string DigerKategorileri { get; set; }
         public Kategoriler Kategori { get; set; }
-        public string TeknikOzellikBaslik { get; set; }
-        public string TeknikOzellikIcerik { get; set; }
+        public List<urunlerTeknikOzellikler> urunlerTeknikOzellikler { get; set; }
         public DateTime createTime { get; set; }
         public DateTime updateTime { get; set; }
         public bool isDeleted { get; set; }
