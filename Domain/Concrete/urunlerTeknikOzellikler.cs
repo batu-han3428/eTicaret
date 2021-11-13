@@ -11,7 +11,7 @@ namespace Domain.Concrete
     {
         public int urunlerId { get; set; }
         public Urunler urunler { get; set; }
-        public int teknikOzelliklerId { get; set; }
-        public TeknikOzellikler teknikOzellikler { get; set; }
+        public int teknikOzelliklerAnaBaslikId { get; set; }
+        public TeknikOzelliklerAnaBaslik TeknikOzelliklerAnaBaslik { get; set; }
     }
 }

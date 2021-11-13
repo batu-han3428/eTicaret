@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public interface IteknikOzellikDegerleri
+    public interface ITeknikOzelliklerAnaBaslik
     {
-        int id { get; set; }
+        int Id { get; set; }
+        string anaBaslik { get; set; }
         List<TeknikOzellikler> TeknikOzellikler { get; set; }
-        string teknikOzellikDegeri { get; set; }
+        List<urunlerTeknikOzellikler> urunlerTeknikOzellikler { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Domain.Models
     {
         int urunlerId { get; set; }
         Urunler urunler { get; set; }
-        int teknikOzelliklerId { get; set; }
-        TeknikOzellikler teknikOzellikler { get; set; }
+        int teknikOzelliklerAnaBaslikId { get; set; }
+        TeknikOzelliklerAnaBaslik TeknikOzelliklerAnaBaslik { get; set; }
     }
 }

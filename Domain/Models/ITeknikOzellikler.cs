@@ -9,9 +9,10 @@ namespace Domain.Models
 {
     public interface ITeknikOzellikler
     {
-        int id { get; set; }
-        List<urunlerTeknikOzellikler> urunlerTeknikOzellikler { get; set; }
-        string teknikOzellikBaslik { get; set; }
-        teknikOzellikDegerleri teknikOzellikDegerleri { get; set; }
+        int id { get; set; } 
+        TeknikOzelliklerAnaBaslik TeknikOzelliklerAnaBaslik { get; set; }
+        string TeknikOzelliklerAltBaslik { get; set; }
+        string teknikOzellikDegerleri { get; set; }
+       
     }
 }

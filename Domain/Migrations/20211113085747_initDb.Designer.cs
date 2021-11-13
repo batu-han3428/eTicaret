@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20211110163913_detayFotograflar")]
-    partial class detayFotograflar
+    [Migration("20211113085747_initDb")]
+    partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,6 +53,46 @@ namespace Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Kategoriler");
+                });
+
+            modelBuilder.Entity("Domain.Concrete.TeknikOzellikler", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("TeknikOzelliklerAnaBaslikId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("teknikOzellikBaslik")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("teknikOzellikDegerleriid")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("TeknikOzelliklerAnaBaslikId");
+
+                    b.HasIndex("teknikOzellikDegerleriid");
+
+                    b.ToTable("TeknikOzellikler");
+                });
+
+            modelBuilder.Entity("Domain.Concrete.TeknikOzelliklerAnaBaslik", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("anaBaslik")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TeknikOzelliklerAnaBaslik");
                 });
 
             modelBuilder.Entity("Domain.Concrete.Urunler", b =>
@@ -105,16 +145,6 @@ namespace Domain.Migrations
                         .HasMaxLength(6)
                         .HasColumnType("int");
 
-                    b.Property<string>("TeknikOzellikBaslik")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("TeknikOzellikIcerik")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("UrunAciklamaBaslik")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -122,8 +152,8 @@ namespace Domain.Migrations
 
                     b.Property<string>("UrunAciklamaIcerik")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("UrunEkAciklama")
                         .IsRequired()
@@ -163,7 +193,52 @@ namespace Domain.Migrations
 
                     b.HasIndex("urunlerId");
 
-                    b.ToTable("detayFotograflar");
+                    b.ToTable("DetayFotograflar");
+                });
+
+            modelBuilder.Entity("Domain.Concrete.teknikOzellikDegerleri", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("teknikOzellikDegeri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TeknikOzellikDegerleri");
+                });
+
+            modelBuilder.Entity("Domain.Concrete.urunlerTeknikOzellikler", b =>
+                {
+                    b.Property<int>("urunlerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("teknikOzelliklerAnaBaslikId")
+                        .HasColumnType("int");
+
+                    b.HasKey("urunlerId", "teknikOzelliklerAnaBaslikId");
+
+                    b.HasIndex("teknikOzelliklerAnaBaslikId");
+
+                    b.ToTable("urunlerTeknikOzellikler");
+                });
+
+            modelBuilder.Entity("Domain.Concrete.TeknikOzellikler", b =>
+                {
+                    b.HasOne("Domain.Concrete.TeknikOzelliklerAnaBaslik", "TeknikOzelliklerAnaBaslik")
+                        .WithMany("TeknikOzellikler")
+                        .HasForeignKey("TeknikOzelliklerAnaBaslikId");
+
+                    b.HasOne("Domain.Concrete.teknikOzellikDegerleri", "teknikOzellikDegerleri")
+                        .WithMany("TeknikOzellikler")
+                        .HasForeignKey("teknikOzellikDegerleriid");
+
+                    b.Navigation("teknikOzellikDegerleri");
+
+                    b.Navigation("TeknikOzelliklerAnaBaslik");
                 });
 
             modelBuilder.Entity("Domain.Concrete.Urunler", b =>
@@ -184,14 +259,47 @@ namespace Domain.Migrations
                     b.Navigation("urunler");
                 });
 
+            modelBuilder.Entity("Domain.Concrete.urunlerTeknikOzellikler", b =>
+                {
+                    b.HasOne("Domain.Concrete.TeknikOzelliklerAnaBaslik", "TeknikOzelliklerAnaBaslik")
+                        .WithMany("urunlerTeknikOzellikler")
+                        .HasForeignKey("teknikOzelliklerAnaBaslikId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Concrete.Urunler", "urunler")
+                        .WithMany("urunlerTeknikOzellikler")
+                        .HasForeignKey("urunlerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TeknikOzelliklerAnaBaslik");
+
+                    b.Navigation("urunler");
+                });
+
             modelBuilder.Entity("Domain.Concrete.Kategoriler", b =>
                 {
                     b.Navigation("urunAdi");
                 });
 
+            modelBuilder.Entity("Domain.Concrete.TeknikOzelliklerAnaBaslik", b =>
+                {
+                    b.Navigation("TeknikOzellikler");
+
+                    b.Navigation("urunlerTeknikOzellikler");
+                });
+
             modelBuilder.Entity("Domain.Concrete.Urunler", b =>
                 {
                     b.Navigation("detayFotograflar");
+
+                    b.Navigation("urunlerTeknikOzellikler");
+                });
+
+            modelBuilder.Entity("Domain.Concrete.teknikOzellikDegerleri", b =>
+                {
+                    b.Navigation("TeknikOzellikler");
                 });
 #pragma warning restore 612, 618
         }

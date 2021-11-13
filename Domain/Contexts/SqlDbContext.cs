@@ -18,6 +18,10 @@ namespace Domain.Contexts
 
         public DbSet<Kategoriler> Kategoriler { get; set; }
         public DbSet<Urunler> Urunler { get; set; }
+        public DbSet<detayFotograflar> DetayFotograflar { get; set; }
+        public DbSet<TeknikOzellikler> TeknikOzellikler { get; set; }
+        public DbSet<TeknikOzelliklerAnaBaslik> TeknikOzelliklerAnaBaslik { get; set; }
+        public DbSet<urunlerTeknikOzellikler> urunlerTeknikOzellikler { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,21 +44,21 @@ namespace Domain.Contexts
 
             modelBuilder.Entity<detayFotograflar>()
                 .HasOne<Urunler>(s => s.urunler)
-                .WithMany(g => g.detayFotograflar);
+                .WithMany(g => g.detayFotograflar);         
 
             modelBuilder.Entity<TeknikOzellikler>()
-                .HasOne<teknikOzellikDegerleri>(s => s.teknikOzellikDegerleri)
+                .HasOne<TeknikOzelliklerAnaBaslik>(s => s.TeknikOzelliklerAnaBaslik)
                 .WithMany(g => g.TeknikOzellikler);
             #endregion
 
             #region Çoka çok ilişkiler
             modelBuilder.Entity<urunlerTeknikOzellikler>()
-               .HasKey(hk => new { hk.urunlerId, hk.teknikOzelliklerId });
+               .HasKey(hk => new { hk.urunlerId, hk.teknikOzelliklerAnaBaslikId });
 
             modelBuilder.Entity<urunlerTeknikOzellikler>()
-            .HasOne(hk => hk.teknikOzellikler)
+            .HasOne(hk => hk.TeknikOzelliklerAnaBaslik)
             .WithMany(h => h.urunlerTeknikOzellikler)
-            .HasForeignKey(hk => hk.teknikOzelliklerId);
+            .HasForeignKey(hk => hk.teknikOzelliklerAnaBaslikId);
 
             modelBuilder.Entity<urunlerTeknikOzellikler>()
             .HasOne(hk => hk.urunler)
@@ -75,7 +79,7 @@ namespace Domain.Contexts
             modelBuilder.Entity<Urunler>().Property(e => e.Marka).HasMaxLength(15).IsRequired();
             modelBuilder.Entity<Urunler>().Property(e => e.Stok).HasMaxLength(6).IsRequired();
             modelBuilder.Entity<Urunler>().Property(e => e.UrunAciklamaBaslik).HasMaxLength(50).IsRequired();
-            modelBuilder.Entity<Urunler>().Property(e => e.UrunAciklamaIcerik).HasMaxLength(500).IsRequired();
+            modelBuilder.Entity<Urunler>().Property(e => e.UrunAciklamaIcerik).HasMaxLength(1000).IsRequired();
             modelBuilder.Entity<Urunler>().Property(e => e.UrunEkAciklama).HasMaxLength(50).IsRequired();
         }
 

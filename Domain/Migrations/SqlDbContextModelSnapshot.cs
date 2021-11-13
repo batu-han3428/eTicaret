@@ -60,17 +60,35 @@ namespace Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("teknikOzellikBaslik")
+                    b.Property<string>("TeknikOzelliklerAltBaslik")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("teknikOzellikDegerleriid")
+                    b.Property<int?>("TeknikOzelliklerAnaBaslikId")
                         .HasColumnType("int");
+
+                    b.Property<string>("teknikOzellikDegerleri")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
-                    b.HasIndex("teknikOzellikDegerleriid");
+                    b.HasIndex("TeknikOzelliklerAnaBaslikId");
 
                     b.ToTable("TeknikOzellikler");
+                });
+
+            modelBuilder.Entity("Domain.Concrete.TeknikOzelliklerAnaBaslik", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("anaBaslik")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TeknikOzelliklerAnaBaslik");
                 });
 
             modelBuilder.Entity("Domain.Concrete.Urunler", b =>
@@ -130,8 +148,8 @@ namespace Domain.Migrations
 
                     b.Property<string>("UrunAciklamaIcerik")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("UrunEkAciklama")
                         .IsRequired()
@@ -171,22 +189,7 @@ namespace Domain.Migrations
 
                     b.HasIndex("urunlerId");
 
-                    b.ToTable("detayFotograflar");
-                });
-
-            modelBuilder.Entity("Domain.Concrete.teknikOzellikDegerleri", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("teknikOzellikDegeri")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("teknikOzellikDegerleri");
+                    b.ToTable("DetayFotograflar");
                 });
 
             modelBuilder.Entity("Domain.Concrete.urunlerTeknikOzellikler", b =>
@@ -194,23 +197,23 @@ namespace Domain.Migrations
                     b.Property<int>("urunlerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("teknikOzelliklerId")
+                    b.Property<int>("teknikOzelliklerAnaBaslikId")
                         .HasColumnType("int");
 
-                    b.HasKey("urunlerId", "teknikOzelliklerId");
+                    b.HasKey("urunlerId", "teknikOzelliklerAnaBaslikId");
 
-                    b.HasIndex("teknikOzelliklerId");
+                    b.HasIndex("teknikOzelliklerAnaBaslikId");
 
                     b.ToTable("urunlerTeknikOzellikler");
                 });
 
             modelBuilder.Entity("Domain.Concrete.TeknikOzellikler", b =>
                 {
-                    b.HasOne("Domain.Concrete.teknikOzellikDegerleri", "teknikOzellikDegerleri")
+                    b.HasOne("Domain.Concrete.TeknikOzelliklerAnaBaslik", "TeknikOzelliklerAnaBaslik")
                         .WithMany("TeknikOzellikler")
-                        .HasForeignKey("teknikOzellikDegerleriid");
+                        .HasForeignKey("TeknikOzelliklerAnaBaslikId");
 
-                    b.Navigation("teknikOzellikDegerleri");
+                    b.Navigation("TeknikOzelliklerAnaBaslik");
                 });
 
             modelBuilder.Entity("Domain.Concrete.Urunler", b =>
@@ -233,9 +236,9 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Concrete.urunlerTeknikOzellikler", b =>
                 {
-                    b.HasOne("Domain.Concrete.TeknikOzellikler", "teknikOzellikler")
+                    b.HasOne("Domain.Concrete.TeknikOzelliklerAnaBaslik", "TeknikOzelliklerAnaBaslik")
                         .WithMany("urunlerTeknikOzellikler")
-                        .HasForeignKey("teknikOzelliklerId")
+                        .HasForeignKey("teknikOzelliklerAnaBaslikId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -245,7 +248,7 @@ namespace Domain.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("teknikOzellikler");
+                    b.Navigation("TeknikOzelliklerAnaBaslik");
 
                     b.Navigation("urunler");
                 });
@@ -255,8 +258,10 @@ namespace Domain.Migrations
                     b.Navigation("urunAdi");
                 });
 
-            modelBuilder.Entity("Domain.Concrete.TeknikOzellikler", b =>
+            modelBuilder.Entity("Domain.Concrete.TeknikOzelliklerAnaBaslik", b =>
                 {
+                    b.Navigation("TeknikOzellikler");
+
                     b.Navigation("urunlerTeknikOzellikler");
                 });
 
@@ -265,11 +270,6 @@ namespace Domain.Migrations
                     b.Navigation("detayFotograflar");
 
                     b.Navigation("urunlerTeknikOzellikler");
-                });
-
-            modelBuilder.Entity("Domain.Concrete.teknikOzellikDegerleri", b =>
-                {
-                    b.Navigation("TeknikOzellikler");
                 });
 #pragma warning restore 612, 618
         }

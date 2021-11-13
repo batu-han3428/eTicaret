@@ -32,7 +32,8 @@ namespace DAL.Concrete
 
         public Urunler urunDetayGetir(int id)
         {
-            var urun = context.Urunler.Include(x => x.detayFotograflar).FirstOrDefault(x => x.Id == id);
+
+            var urun = context.Urunler.Include(x => x.detayFotograflar).Include(x => x.urunlerTeknikOzellikler).ThenInclude(x => x.TeknikOzelliklerAnaBaslik).ThenInclude(x => x.TeknikOzellikler).FirstOrDefault(x => x.Id == id);
 
             return urun;
                

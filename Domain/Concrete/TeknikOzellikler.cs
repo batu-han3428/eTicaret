@@ -9,9 +9,9 @@ namespace Domain.Concrete
 {
     public class TeknikOzellikler:ITeknikOzellikler
     {
-        public int id { get; set; }
-        public List<urunlerTeknikOzellikler> urunlerTeknikOzellikler { get; set; }     
-        public string teknikOzellikBaslik { get; set; }
-        public teknikOzellikDegerleri teknikOzellikDegerleri { get; set; }
+        public int id { get; set; }         
+        public TeknikOzelliklerAnaBaslik TeknikOzelliklerAnaBaslik { get; set; }
+        public string TeknikOzelliklerAltBaslik { get; set; }
+        public string teknikOzellikDegerleri { get; set; }
     }
 }
