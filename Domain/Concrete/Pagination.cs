@@ -10,5 +10,7 @@ namespace Domain.Concrete
     {
         public int PageNumber { get; set; } = 1;
 
+        public string Siralama { get; set; } = "Id";
+
     }
 }

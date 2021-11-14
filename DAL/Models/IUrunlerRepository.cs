@@ -12,8 +12,9 @@ namespace DAL.Models
         List<Urunler> urunleriGetir(string location);
         IEnumerable<Urunler> urunleriGetirSayfali(string location, Pagination pagination);
 
-        int toplamUrunSayisi(string location);
+        int toplamUrunSayisi(string location, Pagination pagination);
 
         Urunler urunDetayGetir(int id);
+
     }
 }

@@ -29,9 +29,9 @@ namespace BL.Concrete
             return _UrunlerRepository.urunleriGetirSayfali(location, ownerParameters);
         }
 
-        public int toplamUrunSayisi(string location)
+        public int toplamUrunSayisi(string location, Pagination pagination)
         {
-            return _UrunlerRepository.toplamUrunSayisi(location);
+            return _UrunlerRepository.toplamUrunSayisi(location, pagination);
         }
 
         public Urunler urunGetir(int id)

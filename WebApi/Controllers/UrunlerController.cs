@@ -27,7 +27,7 @@ namespace WebApi.Controllers
             UrunlerViewModel urunler = new UrunlerViewModel();
 
             urunler.Urunler = UrunlerServices.urunleriGetirSayfali(location, pagination);
-            urunler.toplamUrunSayisi = UrunlerServices.toplamUrunSayisi(location);
+            urunler.toplamUrunSayisi = UrunlerServices.toplamUrunSayisi(location, pagination);
 
             if (urunler.toplamUrunSayisi > 0)
             {
@@ -53,5 +53,7 @@ namespace WebApi.Controllers
                 return BadRequest();
             }
         }
+        
+       
     }
 }
