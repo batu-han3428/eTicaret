@@ -11,6 +11,10 @@ namespace DAL.Concrete
 {
     public class KategorilerRepository : BaseRepository<Kategoriler>, IKategorilerRepository
     {
-        
+        public Kategoriler AltKategorileriGetir(string location)
+        {
+           
+            return context.Kategoriler.Where(x => x.Ad == location).Include(x=>x.kategorilerAltKategoriler).ThenInclude(x=>x.AltKategoriler).FirstOrDefault();
+        }
     }
 }

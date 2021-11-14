@@ -19,11 +19,11 @@ namespace Domain.Models
         string UrunAciklamaIcerik { get; set; }
         int Stok { get; set; }
         string Marka { get; set; }
-        string DigerKategorileri { get; set; }
         Kategoriler Kategori { get; set; }
         List<urunlerTeknikOzellikler> urunlerTeknikOzellikler { get; set; }
         string Fotograf { get; set; }
         string MarkaFotograf { get; set; }
         List<detayFotograflar> detayFotograflar { get; set; }
+        List<urunlerAltKategoriler> urunlerAltKategoriler { get; set; }
     }
 }

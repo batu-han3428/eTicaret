@@ -22,6 +22,10 @@ namespace Domain.Contexts
         public DbSet<TeknikOzellikler> TeknikOzellikler { get; set; }
         public DbSet<TeknikOzelliklerAnaBaslik> TeknikOzelliklerAnaBaslik { get; set; }
         public DbSet<urunlerTeknikOzellikler> urunlerTeknikOzellikler { get; set; }
+        public DbSet<AltKategoriler> AltKategoriler { get; set; }
+        public DbSet<kategorilerAltKategoriler> kategorilerAltKategoriler { get; set; }
+        public DbSet<urunlerAltKategoriler> urunlerAltKategoriler { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -64,6 +68,36 @@ namespace Domain.Contexts
             .HasOne(hk => hk.urunler)
             .WithMany(k => k.urunlerTeknikOzellikler)
             .HasForeignKey(hk => hk.urunlerId);
+
+
+
+            modelBuilder.Entity<kategorilerAltKategoriler>()
+               .HasKey(hk => new { hk.kategorilerId, hk.AltKategorilerId });
+
+            modelBuilder.Entity<kategorilerAltKategoriler>()
+            .HasOne(hk => hk.AltKategoriler)
+            .WithMany(h => h.kategorilerAltKategoriler)
+            .HasForeignKey(hk => hk.AltKategorilerId);
+
+            modelBuilder.Entity<kategorilerAltKategoriler>()
+            .HasOne(hk => hk.Kategoriler)
+            .WithMany(k => k.kategorilerAltKategoriler)
+            .HasForeignKey(hk => hk.kategorilerId);
+
+
+
+            modelBuilder.Entity<urunlerAltKategoriler>()
+               .HasKey(hk => new { hk.urunlerId, hk.AltKategorilerId });
+
+            modelBuilder.Entity<urunlerAltKategoriler>()
+            .HasOne(hk => hk.AltKategoriler)
+            .WithMany(h => h.urunlerAltKategoriler)
+            .HasForeignKey(hk => hk.AltKategorilerId);
+
+            modelBuilder.Entity<urunlerAltKategoriler>()
+            .HasOne(hk => hk.Urunler)
+            .WithMany(k => k.urunlerAltKategoriler)
+            .HasForeignKey(hk => hk.urunlerId);
             #endregion
 
 
@@ -72,7 +106,6 @@ namespace Domain.Contexts
 
 
             modelBuilder.Entity<Urunler>().Property(e => e.Ad).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Urunler>().Property(e => e.DigerKategorileri).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Urunler>().Property(e => e.Fiyat).HasMaxLength(7).IsRequired();
             modelBuilder.Entity<Urunler>().Property(e => e.IndirimliFiyat).HasMaxLength(7);
             modelBuilder.Entity<Urunler>().Property(e => e.IndirimYuzde).HasMaxLength(3);

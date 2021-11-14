@@ -7,16 +7,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public interface IKategoriler:IAuditEntity, ISoftDelete
+    public interface IAltKategoriler
     {
-        int Id { get; set; }
-
-        string Ad { get; set; }
-
-        string Aciklama { get; set; }
-
-        List<Urunler> urunAdi { get; set; }
-
+        int id { get; set; }
+        string altKategoriAdi { get; set; }
         List<kategorilerAltKategoriler> kategorilerAltKategoriler { get; set; }
+        List<urunlerAltKategoriler> urunlerAltKategoriler { get; set; }
     }
 }

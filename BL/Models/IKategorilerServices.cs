@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace BL.Models
 {
-    public interface IKategorilerRepository : IBaseRepository<Kategoriler>
+    public interface IKategorilerServices
     {
         Kategoriler AltKategorileriGetir(string location);
     }

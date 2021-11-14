@@ -19,7 +19,6 @@ namespace Domain.Concrete
         public string UrunAciklamaIcerik { get; set; }
         public int Stok { get; set; }
         public string Marka { get; set; }
-        public string DigerKategorileri { get; set; }
         public Kategoriler Kategori { get; set; }
         public List<urunlerTeknikOzellikler> urunlerTeknikOzellikler { get; set; }
         public DateTime createTime { get; set; }
@@ -28,7 +27,8 @@ namespace Domain.Concrete
         public DateTime DeletedTime { get; set; }
         public string Fotograf { get; set; }
         public string MarkaFotograf { get; set; }
-
         public List<detayFotograflar> detayFotograflar { get; set; }
+        public List<urunlerAltKategoriler> urunlerAltKategoriler { get; set; }
+
     }
 }

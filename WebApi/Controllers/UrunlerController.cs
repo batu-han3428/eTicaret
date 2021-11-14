@@ -14,10 +14,12 @@ namespace WebApi.Controllers
     public class UrunlerController : ControllerBase
     {
         private readonly IUrunlerServices UrunlerServices;
+        private readonly IKategorilerServices _KategorilerServices;
 
-        public UrunlerController(IUrunlerServices UrunlerServices)
+        public UrunlerController(IUrunlerServices UrunlerServices, IKategorilerServices KategorilerServices)
         {
             this.UrunlerServices = UrunlerServices;
+            _KategorilerServices = KategorilerServices;
         }
 
   
@@ -54,6 +56,20 @@ namespace WebApi.Controllers
             }
         }
         
-       
+        [HttpGet("AltKategorileriGetir/{location}")]
+        public IActionResult AltKategorileriGetir(string location)
+        {
+            var veri = _KategorilerServices.AltKategorileriGetir(location);
+
+            if (veri != null)
+            {
+                return Ok(veri);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
     }
 }

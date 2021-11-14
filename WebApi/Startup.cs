@@ -49,7 +49,9 @@ namespace WebApi
 
             services.AddScoped<IUrunlerServices, UrunlerServices>();
             services.AddScoped<IUrunlerRepository, UrunlerRepository>();
-          
+            services.AddScoped<IKategorilerServices, KategorilerServices>();
+            services.AddScoped<IKategorilerRepository, KategorilerRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

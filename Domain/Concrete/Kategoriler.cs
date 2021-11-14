@@ -19,5 +19,6 @@ namespace Domain.Concrete
         public DateTime updateTime { get; set; }
         public bool isDeleted { get; set; }
         public DateTime DeletedTime { get; set; }
+        public List<kategorilerAltKategoriler> kategorilerAltKategoriler { get; set; }
     }
 }
