@@ -14,7 +14,7 @@ namespace DAL.Concrete
         public Kategoriler AltKategorileriGetir(string location)
         {
            
-            return context.Kategoriler.Where(x => x.Ad == location).Include(x=>x.kategorilerAltKategoriler).ThenInclude(x=>x.AltKategoriler).FirstOrDefault();
+            return context.Kategoriler.Where(x => x.Ad == location).Include(x=>x.kategorilerAltKategoriler).ThenInclude(x=>x.AltKategoriler).AsNoTracking().FirstOrDefault();
         }
     }
 }
